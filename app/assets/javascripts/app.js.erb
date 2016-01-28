@@ -6,6 +6,9 @@ receta.config([
     return $routeProvider.when('/', {
       templateUrl: "<%= asset_path('templates/index.html') %> ",
       controller: 'RecipesController'
+    }).when('recipes/:recipeId',{
+      templateUrl: "<%= asset_path('templates/show.html') %>",
+      controller: "RecipeController"
     }).
     otherwise({
        redirectTo: '/index'
@@ -34,7 +37,7 @@ var recipes = [
 var controllers = angular.module('controllers', []);
 
 controllers.controller("RecipesController", [
-  '$scope', '$routeParams', '$location', function($scope, $routeParams, $location) {
+  '$scope', '$routeParams', '$location', '$resource',function($scope, $routeParams, $location, $resource) {
     $scope.recipes = recipes
   }
 ]);
